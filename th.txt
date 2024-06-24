@@ -1,0 +1,28 @@
+//get,post,put,delete
+
+
+npm init
+main file: app.js
+
+code . -> vs code
+
+create file app.js []--->users.js
+
+crrate http server ---> delete
+
+npm install express
+
+//server create//
+
+npm install nodemon -g
+ --> nodemon server start
+
+api -->
+
+
+
+
+
+
+
+
