@@ -7,6 +7,32 @@ console.log("userName --- ",user)
 user.displayUserData()
 
 
+//api  creation --> req,res
+
+//localhost:3000/test
+const users = [
+    {
+        id:1,
+        name:"amit"
+    },
+    {
+        id:2,
+        name:"sumit"
+    }
+]
+app.get("/test",(req,res)=>{
+    console.log('Test API is called');
+    //res.send("Test API is called");
+    res.json({
+        message:"Test API is called",
+        data:users
+    })
+})
+
+
+
+
+
 //http server || express server
 const http = require('http');
 const server = http.createServer((req, res) => {})
