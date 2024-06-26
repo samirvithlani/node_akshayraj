@@ -1,39 +1,50 @@
 //functions --> api -->behave as a controller
 
-const getAllUsers = (req,res)=>{
+const getAllUsers = (req, res) => {
+  res.json({
+    message: "Test API is called",
+  });
+};
 
+let users = [
+  {
+    id: 1,
+    name: "amit",
+  },
+  {
+    id: 2,
+    name: "sumit",
+  },
+];
 
-        res.json({
-            message:"Test API is called",
-        })
+const getUsers = (req, res) => {
+  res.json({
+    message: "user api called",
+    data: users,
+  });
+};
 
+const getUserById = (req, res) => {
+  const id = req.params.id;
+  console.log("Id is ", id);
+  console.log("params", req.params);
 
-}
-const getUsers = (req,res)=>{
+  var foundUser = users.find((u) => u.id == id);
 
-
-    let users = [
-        {
-            id:1,
-            name:"amit"
-        },
-        {
-            id:2,
-            name:"sumit"
-        }
-    ]
-
-
+  if (foundUser) {
     res.json({
-        message:"user api called",
-        data:users
-    })
-
-
-
-}
+      message: "user api called",
+      data: foundUser,
+    });
+  } else {
+    res.json({
+      message: "user not found",
+    });
+  }
+};
 
 module.exports = {
-    getAllUsers,
-    getUsers
-}
+  getAllUsers,
+  getUsers,
+  getUserById,
+};
