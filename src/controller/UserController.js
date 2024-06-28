@@ -1,4 +1,5 @@
 //functions --> api -->behave as a controller
+const userModel = require("../models/UserModel");
 
 const getAllUsers = (req, res) => {
   res.json({
@@ -43,8 +44,18 @@ const getUserById = (req, res) => {
   }
 };
 
+const getUsersFromdb = async (req, res) => {
+  //db.users.find()
+  const users = await userModel.find();
+  res.json({
+    message: "user fetch successfully",
+    data: users,
+  })
+};
+
 module.exports = {
   getAllUsers,
   getUsers,
   getUserById,
+  getUsersFromdb
 };
