@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+app.use(express.json());
+
 
 //router
 const userRoutes = require("./src/routes/UserRoutes");

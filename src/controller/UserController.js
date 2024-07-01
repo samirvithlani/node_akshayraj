@@ -50,12 +50,28 @@ const getUsersFromdb = async (req, res) => {
   res.json({
     message: "user fetch successfully",
     data: users,
-  })
+  });
+};
+
+//post api...
+
+const addUser = async (req, res) => {
+  //request :
+  //body,params,query
+  console.log("Request body is ", req.body);
+
+  const savedUser = await userModel.create(req.body);
+
+  res.json({
+    message: "user added successfully",
+    data: savedUser,
+  });
 };
 
 module.exports = {
   getAllUsers,
   getUsers,
   getUserById,
-  getUsersFromdb
+  getUsersFromdb,
+  addUser,
 };
