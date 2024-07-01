@@ -68,10 +68,32 @@ const addUser = async (req, res) => {
   });
 };
 
+const getUserById1 = async(req, res) => {
+
+  //params
+  const id = req.params.id;
+  const user = await userModel.findById(id)
+  if(user){
+    res.json({
+      message:"user found",
+      data:user
+    })
+  }
+  else{
+    res.json({
+      message:"user not found"
+    })
+  
+  }
+
+
+}
+
 module.exports = {
   getAllUsers,
   getUsers,
   getUserById,
   getUsersFromdb,
   addUser,
+  getUserById1
 };
