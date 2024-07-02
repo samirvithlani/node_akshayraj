@@ -68,26 +68,71 @@ const addUser = async (req, res) => {
   });
 };
 
-const getUserById1 = async(req, res) => {
-
+const getUserById1 = async (req, res) => {
   //params
   const id = req.params.id;
-  const user = await userModel.findById(id)
-  if(user){
+  const user = await userModel.findById(id);
+  if (user) {
     res.json({
-      message:"user found",
-      data:user
-    })
-  }
-  else{
+      message: "user found",
+      data: user,
+    });
+  } else {
     res.json({
-      message:"user not found"
-    })
-  
+      message: "user not found",
+    });
   }
+};
 
+const deleteUser = async (req, res) => {
+  //delete using id
+  const id = req.params.id;
+  if (id) {
+    const deletedUser = await userModel.findByIdAndDelete(id);
+    if (deletedUser) {
+      res.json({
+        message: "user deleted successfully",
+        data: deletedUser,
+      });
+    } else {
+      res.json({
+        message: "user not found",
+      });
+    }
+  } else {
+    res.json({
+      message: "id is not provided",
+    });
+  }
+};
 
-}
+//put --> get / post
+//id --> id --> data --> update
+
+const updateUser = async (req, res) => {
+  const id = req.params.id;
+  const dataToUpdate = req.body;
+
+  if (id) {
+    const updatedUser = await userModel.findByIdAndUpdate(id, dataToUpdate, {
+      new: true,
+    });
+    if (updatedUser) {
+      res.json({
+        message: "user updated successfully",
+        data: updatedUser,
+      });
+    } else {
+      res.json({
+        message: "error in updating user",
+      });
+    }
+  } else {
+    res.json({
+      message: "id is not provided",
+    });
+  }
+};
 
 module.exports = {
   getAllUsers,
@@ -95,5 +140,7 @@ module.exports = {
   getUserById,
   getUsersFromdb,
   addUser,
-  getUserById1
+  getUserById1,
+  deleteUser,
+  updateUser
 };
