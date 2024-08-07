@@ -46,7 +46,7 @@ const getUserById = (req, res) => {
 
 const getUsersFromdb = async (req, res) => {
   //db.users.find()
-  const users = await userModel.find();
+  const users = await userModel.find().populate("role");
   res.json({
     message: "user fetch successfully",
     data: users,

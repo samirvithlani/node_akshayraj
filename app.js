@@ -6,10 +6,12 @@ app.use(express.json());
 
 //router
 const userRoutes = require("./src/routes/UserRoutes");
+const roleRoutes = require("./src/routes/RoleRoutes");
 
 //routes use
 //localhost:3000/user/user
 app.use("/user", userRoutes);
+app.use("/role", roleRoutes);
 
 //db connection
 
