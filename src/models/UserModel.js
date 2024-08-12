@@ -11,6 +11,7 @@ const userSchema = new Schema(
     },
     email:{
         type: String,
+        unique: true
     },
     status:{
         type: Boolean
@@ -21,6 +22,10 @@ const userSchema = new Schema(
     role:{
         type: Schema.Types.ObjectId,
         ref: 'roles'
+    },
+    password:{
+        type:String,
+        required:true
     }
 },{
     timestamps: true

@@ -21,6 +21,13 @@ api -->
 
 mongoose
 
+CORS: Cross Origin Resource Sharing
+react --> localhost:3000 : abc.com
+node --> localhost:5000  : xyz.com
+
+cors middleware
+npm install cors
+
 
 
 

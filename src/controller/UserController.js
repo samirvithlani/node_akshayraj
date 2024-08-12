@@ -134,6 +134,37 @@ const updateUser = async (req, res) => {
   }
 };
 
+const loginUser = async(req,res)=>{
+
+  //email,password
+  const {email,password} = req.body;
+  const userFromEmail = await userModel.findOne({email:email});
+  //seema..
+  if(userFromEmail){
+
+      const isMatch = userFromEmail.password == password;
+      if(isMatch){
+        res.status(200).json({
+          message:"login success",
+          data:userFromEmail
+        })
+      }
+      else{
+        res.status(400).json({
+          message:"password not matched"
+        })
+      }
+
+
+  }else{
+    
+      res.status(400).json({
+        message:"user not found"
+      })
+  }
+
+}
+
 module.exports = {
   getAllUsers,
   getUsers,
@@ -142,5 +173,6 @@ module.exports = {
   addUser,
   getUserById1,
   deleteUser,
-  updateUser
+  updateUser,
+  loginUser
 };
