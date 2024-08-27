@@ -1,5 +1,6 @@
 //functions --> api -->behave as a controller
 const userModel = require("../models/UserModel");
+const encryptPassword = require("../util/encryptPassword");
 
 const getAllUsers = (req, res) => {
   res.json({
@@ -60,7 +61,11 @@ const addUser = async (req, res) => {
   //body,params,query
   console.log("Request body is ", req.body);
 
-  const savedUser = await userModel.create(req.body);
+  const hashedPassword = await encryptPassword.hashPassword(req.body.password);
+  //req.body.password = hashedPassword;
+  const userObj = Object.assign({}, req.body, { password: hashedPassword });
+
+  const savedUser = await userModel.create(userObj);
 
   res.json({
     message: "user added successfully",
@@ -142,7 +147,8 @@ const loginUser = async(req,res)=>{
   //seema..
   if(userFromEmail){
 
-      const isMatch = userFromEmail.password == password;
+      //const isMatch = userFromEmail.password == password;
+      const isMatch = encryptPassword.comparePassword(password,userFromEmail.password);
       if(isMatch){
         res.status(200).json({
           message:"login success",
