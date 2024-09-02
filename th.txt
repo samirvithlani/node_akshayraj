@@ -30,6 +30,13 @@ npm install cors
 
 
 
+multer to upload file:
+database :
+server upload file:
+live storage: aws s3,azure blob,google cloud storage,cloudinary
+
+
+
 
 
 

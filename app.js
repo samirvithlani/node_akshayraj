@@ -9,11 +9,13 @@ app.use(cors()); // enable cors policy
 //router
 const userRoutes = require("./src/routes/UserRoutes");
 const roleRoutes = require("./src/routes/RoleRoutes");
+const uploadRoutes = require("./src/routes/UploadRoutes");
 
 //routes use
 //localhost:3000/user/user
 app.use("/user", userRoutes);
 app.use("/role", roleRoutes);
+app.use("/upload", uploadRoutes);
 
 //db connection
 
