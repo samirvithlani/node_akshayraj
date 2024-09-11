@@ -1,6 +1,7 @@
 //functions --> api -->behave as a controller
 const userModel = require("../models/UserModel");
 const encryptPassword = require("../util/encryptPassword");
+const tokenUtil = require("../util/TokenUtil");
 
 const getAllUsers = (req, res) => {
   res.json({
@@ -139,37 +140,35 @@ const updateUser = async (req, res) => {
   }
 };
 
-const loginUser = async(req,res)=>{
-
+const loginUser = async (req, res) => {
   //email,password
-  const {email,password} = req.body;
-  const userFromEmail = await userModel.findOne({email:email});
+  const { email, password } = req.body;
+  const userFromEmail = await userModel.findOne({ email: email });
   //seema..
-  if(userFromEmail){
-
-      //const isMatch = userFromEmail.password == password;
-      const isMatch = encryptPassword.comparePassword(password,userFromEmail.password);
-      if(isMatch){
-        res.status(200).json({
-          message:"login success",
-          data:userFromEmail
-        })
-      }
-      else{
-        res.status(400).json({
-          message:"password not matched"
-        })
-      }
-
-
-  }else{
-    
+  if (userFromEmail) {
+    //const isMatch = userFromEmail.password == password;
+    const isMatch = encryptPassword.comparePassword(
+      password,
+      userFromEmail.password
+    );
+    if (isMatch) {
+      const token = tokenUtil.generateToken(userFromEmail.toObject());
+      res.status(200).json({
+        message: "login success",
+        //data:userFromEmail
+        data: token,
+      });
+    } else {
       res.status(400).json({
-        message:"user not found"
-      })
+        message: "password not matched",
+      });
+    }
+  } else {
+    res.status(400).json({
+      message: "user not found",
+    });
   }
-
-}
+};
 
 module.exports = {
   getAllUsers,
@@ -180,5 +179,5 @@ module.exports = {
   getUserById1,
   deleteUser,
   updateUser,
-  loginUser
+  loginUser,
 };

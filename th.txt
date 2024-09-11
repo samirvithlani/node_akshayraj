@@ -36,6 +36,19 @@ server upload file:
 live storage: aws s3,azure blob,google cloud storage,cloudinary
 
 
+authentication:
+authorization:
+
+uni admission : -> sem6 -->
+
+api --> authenticated user authorized --> email password
+token ->email -->password -->token--> user -->token...
+
+token -->bind..
+
+jwt token
+
+
 
 
 
