@@ -11,5 +11,7 @@ router.post("/user",userController.addUser)
 router.delete("/user/:id",userController.deleteUser)
 router.put("/user/:id",userController.updateUser)
 router.post("/login",userController.loginUser)
+//get user from token...
+//req.body token.... -> user --> object -->front end
 
 module.exports = router
