@@ -5,7 +5,7 @@ const uploadFile = async(file)=>{
     cloudanry.config({
         cloud_name: 'dpjoxqisl',
         api_key:"292199526794599",
-        api_secret: 'add your'
+        api_secret: ''
     })
     return await cloudanry.uploader.upload(file);
 

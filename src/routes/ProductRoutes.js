@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const productController = require('../controller/ProductController');
+const prodController = require("../controller/ProdController")
 
 router.put("/updateRatings/:id",productController.addRatings)
 /*
@@ -9,4 +10,5 @@ router.put("/updateRatings/:id",productController.addRatings)
     }
 
 */ 
+router.post("/add",prodController.addProduct)
 module.exports = router;
